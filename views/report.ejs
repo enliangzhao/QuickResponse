@@ -25,24 +25,76 @@
         <li><a href="#"></a></li>
         <!-- <li class="active">Data</li> -->
       </ol>
+
+
       
       <div class="report_crime">
-        <b><p><font size="5">&nbsp;&nbsp;Report Crime</font><p></b>
-        <textarea id="crime_description">
-            Please enter the crime description.
-        </textarea>
-        <p>
-            <input type="checkbox" id="cbox1" value="first_checkbox">
-            <label for="cbox1">Share this post with my community</label>
-        </p>
-        <button class='btn' id="location">location</button>
-        <button class='btn' id="photo">photo</button>
-        <button class='btn' id="back">back</button>
-        <button class='btn' id="publish">publish</button>
+        <h3>Report Crime</h3>
+        <form action="" id='textform'>
+            <div id='areabox'>
+                <textarea name="" id="" cols="30" rows="10" placeholder="Please enter crime description"></textarea>
+            </div>
+           
+            <div id='location'>
+                <span><i class="material-icons" id='place'>place</i></span>
+            </div>
+
+            <div id="camera">
+                <span><i class="material-icons" id='camera_alt'>camera_alt</i></span>
+            </div>
+        </form>
+       
+
+        
       </div>
 
-      <div class="report_survey">
-       
+      <div class="report_crime">
+        <h3>Picture Survey</h3>
+        <form action="#" id='textform'>
+            <p>
+              <label>
+                <input type="checkbox" />
+                <span>Bomb</span>
+                <i class="iconfont quick-bomb"></i>
+                
+              </label>
+            </p>
+            
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Gun shot</span>
+                  <i class="iconfont quick-a-qiangzhiqiangfanzuiweixian"></i>
+                </label>
+            </p>
+
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Robbery</span>
+                  <i class="iconfont quick-robbery"></i>
+                </label>
+            </p>
+
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Drugs</span>
+                  <i class="iconfont quick-a-Pillsdrugs"></i>
+                </label>
+            </p>
+
+            <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Thef</span>
+                  <i class="iconfont quick-xiaotou"></i>
+                  
+                </label>
+              </p>
+              
+           
+          </form>
       </div>
 
       <div class="footer">
@@ -57,6 +109,10 @@
 </html>
 
 <style>
+    p,body,h1,h2,h3,span,textarea,div{
+        margin: 0;
+        padding: 0;
+    }
     html{
         width: 100%;
         height: 100%;
@@ -96,12 +152,72 @@
         margin: 0;
        
     }
+
+
+
+
+
+
+    
     .report_crime{
-        margin: 0 !important;
+        margin-left: 5%;
+        margin-top: 5%;
         height: 37.5%;
-        width: 100%;
-        background-color:rgb(208, 113, 129);
+        width: 90%;
+       
     }
+
+    .report_crime h3{
+        font-size: 18px;
+        line-height: 18px;
+        padding-left:2px;
+        font-weight: 700;
+        height: 10%;
+    }
+
+    
+    #textform{
+        height:90%;
+        background-color: rgba(233, 232, 232);
+        padding: 5px 5px 0px 5px;
+    }
+
+    textarea{
+        height:100%;
+        width: 100%;
+    }
+    #areabox{
+        height: 75%;
+        width: 100%;
+    }
+
+    #location{
+        height: 10%;
+        text-align: end;
+        border: 1px solid black;
+        border-top: none;
+        
+    }
+    #camera{
+        height: 15%;
+        text-align:start;
+        font-size: 3rem;
+       
+        
+    }
+
+    #place{
+        font-size: 2.5rem;
+       
+    }
+
+
+
+
+
+
+
+
 
     .report_survey{
         margin: 0 !important;
@@ -134,5 +250,42 @@
     }
 
     
+
+
+    @font-face {
+  font-family: "iconfont"; /* Project id 2960847 */
+  src: url('//at.alicdn.com/t/font_2960847_qrenzvwwnt.woff2?t=1637700509438') format('woff2'),
+       url('//at.alicdn.com/t/font_2960847_qrenzvwwnt.woff?t=1637700509438') format('woff'),
+       url('//at.alicdn.com/t/font_2960847_qrenzvwwnt.ttf?t=1637700509438') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.quick-xiaotou:before {
+  content: "\e60b";
+}
+
+.quick-a-Pillsdrugs:before {
+  content: "\e608";
+}
+
+.quick-bomb:before {
+  content: "\e609";
+}
+
+.quick-a-qiangzhiqiangfanzuiweixian:before {
+  content: "\e60a";
+}
+
+.quick-robbery:before {
+  content: "\e607";
+}
+
     
 </style>

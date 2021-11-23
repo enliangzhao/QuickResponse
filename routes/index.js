@@ -15,4 +15,9 @@ router.get('/post_report', function(req, res, next) {
   res.render('report');
 });
 
+router.get('/access_crime_history', function(req, res, next) {
+  console.log("redirect to crime history");
+  res.render('crimehistory');
+});
+
 module.exports = router;

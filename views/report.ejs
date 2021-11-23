@@ -21,12 +21,30 @@
       </nav>
       <ol class="breadcrumb">
         <li><a href="/">Home</a></li>
+        <li><a href="/post_report">Post Report</a></li>
         <li><a href="#"></a></li>
         <!-- <li class="active">Data</li> -->
       </ol>
-      <div class="map">
+      
+      <div class="report_crime">
+        <b><p><font size="5">&nbsp;&nbsp;Report Crime</font><p></b>
+        <textarea id="crime_description">
+            Please enter the crime description.
+        </textarea>
+        <p>
+            <input type="checkbox" id="cbox1" value="first_checkbox">
+            <label for="cbox1">Share this post with my community</label>
+        </p>
+        <button class='btn' id="location">location</button>
+        <button class='btn' id="photo">photo</button>
+        <button class='btn' id="back">back</button>
+        <button class='btn' id="publish">publish</button>
+      </div>
+
+      <div class="report_survey">
        
       </div>
+
       <div class="footer">
         <button class='btn' onclick="window.location.href='post_report';"><i class="large material-icons">report</i></button>
         <button class='btn'><i class="large material-icons">insert_chart</i></button>
@@ -78,12 +96,20 @@
         margin: 0;
        
     }
-    .map{
+    .report_crime{
         margin: 0 !important;
-        height: 75%;
+        height: 37.5%;
+        width: 100%;
+        background-color:rgb(208, 113, 129);
+    }
+
+    .report_survey{
+        margin: 0 !important;
+        height: 37.5%;
         width: 100%;
         background-color:pink;
     }
+
     .footer{
         height: 10%;
         display:flex;

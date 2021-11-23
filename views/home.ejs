@@ -4,9 +4,91 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>QuickResponser</title>
 </head>
 <body>
-    home
+      <nav >
+          <div class="left">
+            <i class="large material-icons lefticon">person</i>
+            <!-- <a href=""> Settings</a> -->
+          </div>
+       
+        <span class='title_'> QucikResponser</span>
+        <i class="large material-icons right">notifications</i>
+      </nav>
+      <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+      </ol>
+      <div class="map">
+       
+      </div>
+      <div class="footer">
+        <i class="large material-icons">insert_chart</i>
+        <i class="large material-icons">insert_chart</i>
+        <i class="large material-icons">insert_chart</i>
+        <i class="large material-icons">insert_chart</i>
+      </div>
 </body>
 </html>
+
+<style>
+    html{
+        width: 100%;
+        height: 100%;
+    }
+    body{
+        height: 100%;
+       
+    }
+    nav{
+        margin: 0 !important;
+        height: 10% !important;
+       
+    }
+    .left{
+        float: left;
+        width:10%;
+        height:100%;
+
+    }
+    .lefticon{
+        height: 75% !important;
+    }
+    .right{
+        float: right;
+    }
+    .title_{
+        margin-left: 50%;
+    }
+    
+    .breadcrumb{
+        margin: 0 !important;
+        height: 5% !important;
+        padding: 0;
+        text-align: left;
+    }
+    .breadcrumb ol{
+        margin: 0;
+       
+    }
+    .map{
+        margin: 0 !important;
+        height: 75%;
+        width: 100%;
+        background-color:pink;
+    }
+    .footer{
+        height: 10%;
+        display:flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    
+    
+</style>

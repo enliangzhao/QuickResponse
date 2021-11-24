@@ -7,27 +7,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>QuickResponser</title>
 </head>
+
+
 <body>
-      <nav >
-          <div class="left">
-            <i class="large material-icons lefticon">person</i>
-            <!-- <a href=""> Settings</a> -->
-          </div>
-       
-        <span class='title_'> QucikResponser</span>
-        <i class="large material-icons right">notifications</i>
-      </nav>
-      <ol class="breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li><a href="/post_report">Post Report</a></li>
-        <li><a href="#"></a></li>
-        <!-- <li class="active">Data</li> -->
-      </ol>
+  <nav>
+     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+     <p > QucikResponser </p>> 
+  </nav>
 
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="../images/touxiang.jpg">
+      </div>
+      <a href="#user"><img class="circle" src="../images/touxiang.jpg"></a>
+      <a href="#name"><span class="white-text name">John Doe</span></a>
+    </div></li>
+    <li><a href="/user_profile">Profile</a></li>
+    <li><a href="#!">Notifications</a></li>
+  </ul>
+  
 
-      
+    
+            
+            
+     
       <div class="report_crime">
         <h3>Report Crime</h3>
         <form action="" id='textform'>
@@ -92,7 +100,6 @@
                   
                 </label>
               </p>
-              
            
           </form>
       </div>
@@ -106,6 +113,26 @@
 
 </body>
 </html>
+
+
+<script>
+  const options ={
+    edge:'left'
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, options);
+  });
+
+  var myCookie = document.cookie.replace(/(?:(?:^|.*;\s*)crime_username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  if (myCookie == ""){
+    document.cookie ='crime_username=Joe'
+  }
+  myCookie = document.cookie.replace(/(?:(?:^|.*;\s*)crime_username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  alert(myCookie);
+
+  $('.white-text').text(myCookie)
+</script>
 
 <style>
     p,body,h1,h2,h3,span,textarea,div{
@@ -122,46 +149,25 @@
     }
     nav{
         margin: 0 !important;
-        height: 10% !important;
+        width: 100% !important;
+        height: 5% !important;
        
     }
-    .left{
-        float: left;
-        width:10%;
-        height:100%;
 
+    nav p{
+      text-align: center;
     }
-    .lefticon{
-        height: 75% !important;
-    }
-    .right{
-        float: right;
-    }
-    .title_{
-        margin-left: 50%;
+    .sidenav-trigger{
+      margin: 0 !important;
     }
     
-    .breadcrumb{
-        margin: 0 !important;
-        height: 5% !important;
-        padding: 0;
-        text-align: left;
-    }
-    .breadcrumb ol{
-        margin: 0;
-       
-    }
-
-
-
-
-
+   
 
     
     .report_crime{
         margin-left: 5%;
         margin-top: 5%;
-        height: 37.5%;
+        height: 40%;
         width: 90%;
        
     }

@@ -27,8 +27,10 @@
         <li><a href="#"></a></li>
         <!-- <li class="active">Data</li> -->
       </ol>
-      <div id="map">
-       
+      <div class="map">
+        <div id = "map">
+
+        </div>
       </div>
       <div class="footer">
         <button class='btn' onclick="window.location.href='post_report';"><i class="large material-icons">report</i></button>
@@ -43,19 +45,15 @@
 
 
 <script>
-    L.mapbox.accessToken = 'pk.eyJ1IjoiZW5saWFuZ3poYW8iLCJhIjoiY2t3Y3pzang2MnJnZzMwbzBzMzJ0bW05ciJ9.qNndjgHgLOIkDYPB5Jvgew';
+    L.mapbox.accessToken = 'pk.eyJ1IjoicmljYXJkb2R4dSIsImEiOiJja3dkMG92dTczOWFmMm5uaG4zOWNneXU2In0.RTrNmzoVyDS1YTKAx-cMjQ';
     var map = L.mapbox.map('map')
-    .setView([40, -74.50], 9)
+    .setView([37.22, -122.2], 14)
     .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
 </script>
 </script>
 
 <style>
-    #map { 
-        width: 100%;
-        height: 40%;
-
-    }
+    
     html{
         width: 100%;
         height: 100%;
@@ -95,12 +93,15 @@
         margin: 0;
        
     }
+    
     .map{
         margin: 0 !important;
         height: 75%;
         width: 100%;
         background-color:pink;
     }
+    #map { height: 100%; width: 100%;}
+
     .footer{
         height: 10%;
         display:flex;

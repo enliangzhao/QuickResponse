@@ -26,4 +26,9 @@ router.get('/access_crime_history', function(req, res, next) {
 
 router.post('/createReport',reportController.postReport)
 
+router.get('/user_profile', function(req, res, next) {
+  console.log("redirect to user profile");
+  res.render('profile');
+});
+
 module.exports = router;

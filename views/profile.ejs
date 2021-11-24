@@ -8,50 +8,61 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>QuickResponser</title>
-    
-
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLgsrMtm_imSDVWeMXrkZFoGELYq3uHc0&callback=initMap&libraries=&v=weekly"
-      async
-    ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../js/map.js"></script>
-
 </head>
 <body>
       <nav >
-          <div class="left">
-            <i class="large material-icons lefticon" onclick="window.location.href='user_profile';">person</i>
+          <!-- <div class="left">
+            <i class="large material-icons lefticon">person</i> -->
             <!-- <a href=""> Settings</a> -->
-          </div>
+          <!-- </div> -->
        
         <span class='title_'> QucikResponser</span>
         <i class="large material-icons right">notifications</i>
       </nav>
       <ol class="breadcrumb">
         <li><a href="/">Home</a></li>
+        <li><a href="/crimehistory">Crime History</a></li>
         <li><a href="#"></a></li>
         <!-- <li class="active">Data</li> -->
       </ol>
-      <div id="map">
-
+      
+      <div class="crime_history">
+        <b><p><font size="5">&nbsp;&nbsp;Edit your profile</font><p></b>
+        <b><p><font size="2">&nbsp;&nbsp;Username</font><p></b>
+        <input id="Username">
+            Please enter your updated Username
+        </input>
+        <b><p><font size="2">&nbsp;&nbsp;Address</font><p></b>
+        <input id="crime_history_address">
+            Please enter your updated Address
+        </input>
+        <b><p><font size="2">&nbsp;&nbsp;Alarm notification range</font><p></b>
+        <input id="crime_history_distance">
+            In miles
+        </input>  
+        <b><p><font size="2">&nbsp;&nbsp;Update your profile photo</font><p></b>
+        <input type='file' onchange="readURL(this);" />
+        <img id="blah" src="http://placehold.it/180" alt="your image" />
+        <button class='btn' id="location">Cancel</button>
+        <button class='btn' id="publish">Update</button>
       </div>
+      
+      <div class="search_result">
+       
+      </div>
+
       <div class="footer">
         <button class='btn' onclick="window.location.href='post_report';"><i class="large material-icons">report</i></button>
         <button class='btn' onclick="window.location.href='access_crime_history';"><i class="large material-icons">history</i></button>
-        <button class='btn btn-primary' onclick="window.location.href='statistics';"><i class="large material-icons">insert_chart</i></button>
+        <button class='btn'><i class="large material-icons">insert_chart</i></button>
+        <button class='btn'><i class="large material-icons">insert_chart</i></button>
       </div>
 
 
 </body>
 </html>
 
-
-
-
-
 <style>
-    
     html{
         width: 100%;
         height: 100%;
@@ -91,11 +102,18 @@
         margin: 0;
        
     }
-    
-    #map{
+    .crime_history{
+        margin: auto !important;
+        height: 50%;
+        width: 90%;
+        background-color:white;
+    }
+
+    .search_result{
         margin: 0 !important;
-        height: 75%;
-        width: 100%;
+        height: 30%;
+        width: 90%;
+        background-color:white;
     }
 
     .footer{
@@ -121,6 +139,23 @@
         background-color: RoyalBlue;
     }
 
-    
+    label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+    color: black;
+    font-size: medium;
+    }
+
+    input,
+    label {
+        margin: .4rem 0;
+    }
+
+    img{
+    max-width:180px;
+    }
+    input[type=file]{
+    padding:10px;
+    background: white;}
     
 </style>

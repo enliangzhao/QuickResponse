@@ -9,5 +9,8 @@ router.get('/', function(req, res, next) {
 router.get('/home', function(req, res, next) {
   res.render('home', { title: 'Quick Responser' });
 });
+router.get('/statistics', function(req, res, next) {
+  res.render('statistics', { title: 'Quick Responser' });
+});
 
 module.exports = router;

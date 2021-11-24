@@ -1,0 +1,252 @@
+<style>
+    .filter {
+        display: inline-block;
+        width: 100px;
+        height: auto;
+    }
+
+    .form-select {
+        width: 100px;
+    }
+
+    .container {
+        position: relative;
+        top: 20px;
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <title>QuickResponser</title>
+</head>
+<script
+src="https://code.jquery.com/jquery-3.5.1.min.js"
+integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+crossorigin="anonymous"
+></script>
+
+<div class="main">
+    <div id="head">
+    </div>
+    <div id="liveAlertPlaceholder"></div>
+
+    <div class="d-flex justify-content-center mt-4">
+        <h4>Crime Statistics</h4>
+    </div>
+    <form class="pt-4 pl-5 pr-5" id="form">
+
+        <div class="form-group">
+            <label for="type">Crime Type</label>
+            <select id="type" class="form-control">
+                <option selected value="">-</option>
+                <option value="Robbery">Robbery</option>
+                <option value="Violence">Violence</option>
+                <option value="Sexual">Sexual Harassment</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="date">Month</label>
+            <input id="month" type="month" class="form-control" min="2021-01" max="2021-11" value="2021-11">
+        </div>
+        <!-- <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+            <input placeholder="Select date" type="text" id="example" class="form-control">
+            <label for="example">Try me...</label>
+            <i class="fas fa-calendar input-prefix"></i>
+          </div> -->
+
+        <div class="form-group">
+            <label for="location">Location</label>
+            <select id="location" class="form-control">
+                <option selected value="">-</option>
+                <option value="Los Angeles">Los Angeles</option>
+                <option value="Miami">Miami</option>
+                <option value="New York">New York</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-default" id="locationbutton">
+                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 
+            </button>
+            <label for="location" style="visibility:hidden" id="locationlabel">Mountain View, CA</label>
+        </div>
+
+
+    </form>
+
+    
+    <div style="text-align:center">
+        <button class="btn btn-primary" id="apply-button">Submit</button>
+    </div>
+
+    <div class="container">
+        <table class="table table-striped" style="font-size:8px" id="table">
+        </table>
+    </div>
+</div>
+
+
+</div>
+
+<script>
+    // setNavbarBack("station");
+    var chooseLocation = -1;
+    var alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+
+    $(function () {
+        // checkPrivilege()
+        // setMinDate();
+        $('#apply-button').on('click', function () {
+            if(checkInput() == 1) viewTable();
+        });
+
+        $('#plus').on('click', function () {
+            console.log("fda")
+        });
+        $('#location').on('click', function () {
+            document.getElementById("locationlabel").style.visibility = "hidden";
+        });
+        $('#locationbutton').on('click', function () {
+            chooseLocation = 0;
+            document.getElementById("locationlabel").style.visibility = "";
+            $('#location').val('');
+            console.log(chooseLocation);
+        });
+        function checkInput() {
+            const data = {
+                location: $('#location').val(),
+                type: $('#type').val(),
+                month: $('#month').val(),
+                label: document.getElementById("locationlabel").style.visibility
+            }
+            if (data.type == "") {
+                alert('Please choose the crime type');
+                return -1;
+            }
+            if (data.month == "") {
+                alert('Please choose the month');
+                return -1;
+            }
+            if (data.location == "" && data.label == "hidden") {
+                alert('Please choose the location');
+                return -1;
+            }
+            return 1;
+        }
+        // function alert(message, type) {
+        //     var wrapper = document.createElement('div');
+        //     wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+        //     alertPlaceholder.append(wrapper);
+        // }
+        function viewTable() {
+            // $(".alert").alert('close');
+            const data = {
+                location: $('#location').val(),
+                type: $('#type').val(),
+                month: $('#month').val()
+            }
+
+            if (data.location == "") data.location == "mtv";
+            console.log(data);
+            $.ajax({
+                method: 'POST',
+                url: `/statistics`,
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                statusCode: {
+                    403: (res) => {
+                        console.log(res);
+                    },
+                    /* Handle the successful registration response */
+                    200: (res) => {
+                        //console.log(res);
+                        $('#table-body').empty();
+                        $('#table').empty();
+
+                        if (res.length == 0) {
+                            const alert = 'There is no data on that day'
+                            $('#head').append(`<div class='alert alert-warning alert-dismissable' id='fail-alert'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>${alert}</div> `);
+                            return;
+                        }
+                        $('#table').append('<tbody id="table-body"></tbody>');
+                        $('#table').append('<thead><tr><th>City</th><th>Type</th><th>Case</th><th>Month</th></tr></thead>')
+                        console.log(res);
+                        if ($('#type').val() == '' && $('#date').val() == '') {
+                            var arr = [];
+                            for (var i = 0; i < res.length; i++) {
+                                for (var j = 0; j < res[i].vaccine.length; j++) {
+                                    var data = {
+                                        stationname: res[i].stationname,
+                                        address: res[i].address,
+                                        vaccinetype: res[i].vaccine[j].vaccinetype,
+                                        number: res[i].vaccine[j].number,
+                                        date: res[i].vaccine[j].date.split("T")[0]
+
+                                    }
+                                    arr.push(data);
+                                }
+
+                            }
+                            arr.sort((a, b) => b.number - a.number);
+                            for (var i = 0; i < arr.length; i++) {
+                                $('#table-body').append(`<tr><td>${arr[i].stationname}</td><td>${arr[i].number}</td><td>${arr[i].vaccinetype}</td><td>${arr[i].date}</td><td style="word-break:break-all">${arr[i].address}</td></tr>`)
+
+                            }
+                        }
+                        else {
+                            console.log(res.length);
+                            for (var i = 0; i < res.length; i++) {
+                                    $('#table-body').append(`<tr><td>${res[i].location}</td><td>${res[i].type}</td><td>${res[i].case}</td><td>${res[i].month}</td></tr>`)
+
+                            }
+                        }
+
+                    },
+                },
+            });
+        }
+
+        function setMinDate() {
+            var date_now = new Date();
+            var year = date_now.getFullYear();
+
+            var month = date_now.getMonth() + 1 < 10 ? "0" + (date_now.getMonth() + 1) : (date_now.getMonth() + 1);
+            var date = date_now.getDate() < 10 ? "0" + date_now.getDate() : date_now.getDate();
+            console.log(year + "-" + month + "-" + date);
+            $("#date").attr("min", year + "-" + month + "-" + date);
+
+        }
+
+        // function checkPrivilege() {
+        //     const currentUsername = getUserFromToken($.cookie('token')).username;
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: `/api/users/${currentUsername}`,
+        //         headers: {
+        //             Authorization: 'Bearer ' + $.cookie('token'),
+        //         },
+        //         statusCode: {
+        //             200: (response) => {
+        //                 const privilegeLevel = response.privilegeLevel;
+        //                 if (privilegeLevel === 1 || privilegeLevel === 2) {
+        //                     setNavbarCreate();
+        //                 }
+        //             },
+        //         },
+        //     });
+        // }
+
+
+
+    })
+
+</script>

@@ -16,6 +16,15 @@ function initMap(locations) {
                 title: "current location"
             });
             current_location.addListener("click", () => {
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:3000/createReport',
+                    data: {},
+                    success: function(data){
+                        alert(data)
+                    }
+                    
+                  });
                 alert("marker: current location");
             });
             var iconUrl;

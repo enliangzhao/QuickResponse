@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const reportController = require('../controller/reportController');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,5 +20,7 @@ router.get('/access_crime_history', function(req, res, next) {
   console.log("redirect to crime history");
   res.render('crimehistory');
 });
+
+router.post('/createReport',reportController.postReport)
 
 module.exports = router;

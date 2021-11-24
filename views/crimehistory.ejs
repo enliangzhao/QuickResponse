@@ -21,12 +21,37 @@
       </nav>
       <ol class="breadcrumb">
         <li><a href="/">Home</a></li>
+        <li><a href="/crimehistory">Crime History</a></li>
         <li><a href="#"></a></li>
         <!-- <li class="active">Data</li> -->
       </ol>
-      <div class="map">
+      
+      <div class="crime_history">
+        <b><p><font size="5">&nbsp;&nbsp;Crime History</font><p></b>
+        <b><p><font size="2">&nbsp;&nbsp;Address</font><p></b>
+        <input id="crime_history_address">
+            Please enter the the address you want to search for.
+        </input>
+        <b><p><font size="2">&nbsp;&nbsp;Within</font><p></b>
+        <input id="crime_history_distance">
+            In miles.
+        </input>  
+        <b><p><font size="2">&nbsp;&nbsp;Start Date</font><p></b>
+        <input type="date" id="start" name="trip-start"
+            value="2018-07-22"
+            min="1900-01-01" max="2025-12-31">
+        <b><p><font size="2">&nbsp;&nbsp;End Date</font><p></b>
+        <input type="date" id="start" name="trip-start"
+            value="2018-07-22"
+            min="1900-01-01" max="2025-12-31">
+        <button class='btn' id="location">Reset Filters</button>
+        <button class='btn' id="publish">Search</button>
+      </div>
+      
+      <div class="search_result">
        
       </div>
+
       <div class="footer">
         <button class='btn' onclick="window.location.href='post_report';"><i class="large material-icons">report</i></button>
         <button class='btn' onclick="window.location.href='access_crime_history';"><i class="large material-icons">history</i></button>
@@ -78,12 +103,20 @@
         margin: 0;
        
     }
-    .map{
-        margin: 0 !important;
-        height: 75%;
-        width: 100%;
-        background-color:pink;
+    .crime_history{
+        margin: auto !important;
+        height: 50%;
+        width: 90%;
+        background-color:white;
     }
+
+    .search_result{
+        margin: 0 !important;
+        height: 30%;
+        width: 90%;
+        background-color:white;
+    }
+
     .footer{
         height: 10%;
         display:flex;
@@ -105,6 +138,18 @@
     /* Darker background on mouse-over */
     .btn:hover {
         background-color: RoyalBlue;
+    }
+
+    label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+    color: black;
+    font-size: medium;
+    }
+
+    input,
+    label {
+        margin: .4rem 0;
     }
 
     

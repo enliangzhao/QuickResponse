@@ -17,6 +17,7 @@ const StatController = require('../controllers/statistics');
 
 // Get (Search) announcement messages
 router.post('/', StatController.getStat);
+router.post('/months', StatController.getAllStat);
 
 // // store new message
 // router.post(

@@ -31,6 +31,25 @@ class StatController {
     }
     res.status(200).send(arr);
   }
+  static async getAllStat(req, res) {
+    //   const { content } = req.body;
+    const { content } = req.body;
+    console.log(req.body.month);
+    //   const author = req.user.username;
+    var arr = [];
+    if (req.body.location == "Los Angeles" && req.body.type == "Robbery") {
+      
+      res.status(200).send(LosRobbery);
+
+    }
+    if (req.body.location == "Los Angeles" && req.body.type == "Violence") {
+      res.status(200).send(LosViolence);
+
+    }
+    if (req.body.location == "Los Angeles" && req.body.type == "Sexual") {
+      res.status(200).send(LosSexual);
+    }
+  }
 }
 const LosRobbery = [
   {

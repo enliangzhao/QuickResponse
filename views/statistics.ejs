@@ -148,7 +148,6 @@ var cases = [];
             chooseLocation = 0;
             document.getElementById("locationlabel").style.visibility = "";
             $('#location').val('');
-            console.log(chooseLocation);
         });
         function checkInput() {
             const data = {
@@ -193,7 +192,6 @@ var cases = [];
             document.getElementById("table").style.visibility = "";
 
             if (data.location == "") data.location = "mtv";
-            console.log(data);
             $.ajax({
                 method: 'POST',
                 url: `/statistics`,
@@ -228,7 +226,7 @@ var cases = [];
                                 /* Handle the successful registration response */
                                 200: (res) => {
                                     //console.log(res);
-                                    console.log(res);
+
                                     parseData(res);
                                 },
                             },
@@ -258,7 +256,6 @@ var cases = [];
             }
             cases.push(line);
 
-            console.log(cases);
             var myLineChart = new Chart(ctxL, {
                 type: 'line',
                 data: {

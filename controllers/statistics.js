@@ -2,13 +2,11 @@ class StatController {
   static async getStat(req, res) {
     //   const { content } = req.body;
     const { content } = req.body;
-    console.log(req.body.month);
     //   const author = req.user.username;
     var arr = [];
     if (req.body.location == "Los Angeles" && req.body.type == "Robbery") {
       for (const element of LosRobbery) {
         if (element.month == req.body.month) {
-          console.log(element);
           arr.push(element);
         }
       }
@@ -16,7 +14,6 @@ class StatController {
     if (req.body.location == "Los Angeles" && req.body.type == "Violence") {
       for (const element of LosViolence) {
         if (element.month == req.body.month) {
-          console.log(element);
           arr.push(element);
         }
       }
@@ -24,7 +21,6 @@ class StatController {
     if (req.body.location == "Los Angeles" && req.body.type == "Sexual") {
       for (const element of LosSexual) {
         if (element.month == req.body.month) {
-          console.log(element);
           arr.push(element);
         }
       }
@@ -32,7 +28,6 @@ class StatController {
     if (req.body.location == "Miami" && req.body.type == "Robbery") {
       for (const element of MiamiRobbery) {
         if (element.month == req.body.month) {
-          console.log(element);
           arr.push(element);
         }
       }
@@ -41,7 +36,6 @@ class StatController {
     if (req.body.location == "Miami" && req.body.type == "Violence") {
       for (const element of MiamiViolence) {
         if (element.month == req.body.month) {
-          console.log(element);
           arr.push(element);
         }
       }
@@ -50,7 +44,6 @@ class StatController {
     if (req.body.location == "Miami" && req.body.type == "Sexual") {
       for (const element of MiamiSexual) {
         if (element.month == req.body.month) {
-          console.log(element);
           arr.push(element);
         }
       }
@@ -58,7 +51,6 @@ class StatController {
     if (req.body.location == "New York" && req.body.type == "Robbery") {
       for (const element of NYRobbery) {
         if (element.month == req.body.month) {
-          console.log(element);
           arr.push(element);
         }
       }
@@ -67,7 +59,6 @@ class StatController {
     if (req.body.location == "New York" && req.body.type == "Violence") {
       for (const element of NYViolence) {
         if (element.month == req.body.month) {
-          console.log(element);
           arr.push(element);
         }
       }
@@ -76,7 +67,6 @@ class StatController {
     if (req.body.location == "New York" && req.body.type == "Sexual") {
       for (const element of NYSexual) {
         if (element.month == req.body.month) {
-          console.log(element);
           arr.push(element);
         }
       }
@@ -84,7 +74,6 @@ class StatController {
     if (req.body.location == "mtv" && req.body.type == "Robbery") {
       for (const element of BayRobbery) {
         if (element.month == req.body.month) {
-          console.log(element);
           arr.push(element);
         }
       }
@@ -92,7 +81,6 @@ class StatController {
     if (req.body.location == "mtv" && req.body.type == "Violence") {
       for (const element of BayViolence) {
         if (element.month == req.body.month) {
-          console.log(element);
           arr.push(element);
         }
       }
@@ -101,7 +89,6 @@ class StatController {
     if (req.body.location == "mtv" && req.body.type == "Sexual") {
       for (const element of BaySexual) {
         if (element.month == req.body.month) {
-          console.log(element);
           arr.push(element);
         }
       }
@@ -111,7 +98,6 @@ class StatController {
   static async getAllStat(req, res) {
     //   const { content } = req.body;
     const { content } = req.body;
-    console.log(req.body.month);
     //   const author = req.user.username;
     var arr = [];
     if (req.body.location == "Los Angeles" && req.body.type == "Robbery") {

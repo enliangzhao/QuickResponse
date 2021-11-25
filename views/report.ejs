@@ -44,11 +44,15 @@
             </div>
            
             <div id='location'>
+                <span id='address'>1893 Chrismas Dr, Ca 90783</span>
                 <span><i class="material-icons" id='place'>place</i></span>
             </div>
 
             <div id="camera">
-                <span><i class="material-icons" id='camera_alt'>camera_alt</i></span>
+                
+                <span><i class="material-icons" id='camera_alt'>camera_alt</i> </span>
+                <input type="file" name="pic" accept="image/*"  class='pic_upload'/> 
+               
             </div>
         </form>
        
@@ -56,9 +60,9 @@
         
       </div>
 
-      <div class="report_crime">
+      <div class="report_survey">
         <h3>Picture Survey</h3>
-        <form action="#" id='textform'>
+        <form action="#" id='surveyform'>
             <p>
               <label>
                 <input type="checkbox" />
@@ -100,8 +104,28 @@
                   
                 </label>
               </p>
+
+          
            
           </form>
+      </div>
+
+
+      <div class="confirm-lane">
+        
+        <p>
+          <label>
+            <input type="checkbox" />
+            <span>share this report with my community</span>
+            
+            
+          </label>
+        </p>
+
+        <div class='two-button'>
+          <button type="button" class="btn btn-outline-primary btn-sm ">Publish</button>
+          <button type="button" class="btn btn-outline-primary btn-sm cancel">Cancel</button>
+        </div>
       </div>
 
       <div class="footer">
@@ -129,9 +153,23 @@
     document.cookie ='crime_username=Joe'
   }
   myCookie = document.cookie.replace(/(?:(?:^|.*;\s*)crime_username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-  alert(myCookie);
+  
 
   $('.white-text').text(myCookie)
+
+
+
+
+
+
+  /// front logic for the report 
+
+    $('.cancel').click(function(){
+      window.location.href ='/'
+    })
+    $('#place').click(function(){
+      $('#address').css('visibility', 'visible')
+    })
 </script>
 
 <style>
@@ -150,7 +188,7 @@
     nav{
         margin: 0 !important;
         width: 100% !important;
-        height: 5% !important;
+        height: 7% !important;
        
     }
 
@@ -207,14 +245,33 @@
         height: 15%;
         text-align:start;
         font-size: 3rem;
-       
+        display: flex;
+        justify-content: center;
+        align-content: center;
         
+        
+    }
+    .pic_upload{
+      margin-top: 0.8rem;
+      height: 100%;
+      width: 90%;
+      font-size: x-small;
+      
     }
 
     #place{
         font-size: 2.5rem;
        
     }
+    #address{
+      float: left;
+      visibility: hidden;
+    }
+
+
+    
+
+    
 
 
 
@@ -225,11 +282,46 @@
 
 
     .report_survey{
-        margin: 0 !important;
-        height: 37.5%;
-        width: 100%;
-        background-color:pink;
+      margin-left: 5%;
+        margin-top: 5%;
+        height: 30%;
+        width: 90%;
     }
+
+    .report_survey h3{
+        font-size: 18px;
+        line-height: 18px;
+        padding-left:2px;
+        font-weight: 700;
+        height: 10%;
+    }
+
+    #surveyform{
+        height:90%;
+        background-color: rgba(233, 232, 232);
+        padding: 5px 5px 0px 5px;
+    }
+
+
+
+    .confirm-lane{
+      margin-left: 5%;
+        margin-top: 5%;
+        height: 10%;
+        width: 90%;
+    }
+
+    .two-button{
+      display: flex;
+      justify-content: space-between;
+    }
+    .two-button .btn{
+      font-size: 10px !important;
+    }
+
+
+
+    
 
     .footer{
         height: 10%;

@@ -7,8 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>QuickResponser</title>
 </head>
+
 <body>
       <nav >
           <div class="left">
@@ -41,15 +44,16 @@
             value="2018-07-22"
             min="1900-01-01" max="2025-12-31">
         <b><p><font size="2">&nbsp;&nbsp;End Date</font><p></b>
-        <input type="date" id="start" name="trip-start"
+        <input type="date" id="end" name="trip-start"
             value="2018-07-22"
             min="1900-01-01" max="2025-12-31">
-        <button class='btn' id="location">Reset Filters</button>
-        <button class='btn' id="publish">Search</button>
+        <button type="button" class="btn btn-default" id="reset-button">Reset Filters</button>
+        <button type="button" class="btn btn-default" id="search-button">Search</button>
       </div>
       
-      <div class="search_result">
-       
+      <div class="container" >
+        <table class="table table-striped" style="font-size:12px" id="table" style="visibility:hidden">
+        </table>
       </div>
 
       <div class="footer">
@@ -109,11 +113,9 @@
         background-color:white;
     }
 
-    .search_result{
-        margin: 0 !important;
-        height: 30%;
-        width: 90%;
-        background-color:white;
+    .container {
+        position: relative;
+        top: 20px;
     }
 
     .footer{
@@ -154,3 +156,39 @@
     
     
 </style>
+
+
+<script>
+    
+        console.log('dpc1');
+        
+    
+        $(function () {
+            console.log('dpc2');
+            $('#search-button').click(function () {
+                // document.getElementById("table").style.visibility = "";
+                console.log('search');
+                console.log(verifyInput());
+                if(verifyInput() == 1) viewTable();
+            });
+
+            $('#reset-button').on('click', function () {
+                // document.getElementById("table").style.visibility = "";
+                console.log('reset');
+                location.reload();
+            });
+
+            function verifyInput() {
+                if ($('#crime_history_address').val() == "") {
+                    alert('Please type your address');
+                    return -1;
+                }
+                if ($('#crime_history_distance').val() == "") {
+                    alert('Please add the distance you want to select');
+                    return -1;
+                }
+                return 1;
+            }
+        })
+    
+</script>

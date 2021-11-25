@@ -27,6 +27,9 @@ const ReportSchema = new Schema({
     },
     src:{
         type: String
+    },
+    crime_type:{
+        type: Number, default: 0
     }
 
    

@@ -7,12 +7,14 @@ function initMap(locations) {
         navigator.geolocation.getCurrentPosition(function (position) {
             currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 12,
-            center: currentLocation,
+            zoom: 16,
+            center: {lat:37.41061394071311, lng: -122.05973521573722},
+            // lat +- 0.002  lng +- 0.004
             });
             const current_location = new google.maps.Marker({
-                position: currentLocation,
+                position: {lat:37.41061394071311, lng: -122.05973521573722},
                 map,
+                label: {text: "You", color: "white"},
                 title: "current location"
             });
             current_location.addListener("click", () => {
@@ -23,9 +25,7 @@ function initMap(locations) {
                     success: function(data){
                         alert(data)
                     }
-                    
                   });
-                alert("marker: current location");
             });
             var iconUrl;
             // for (var i = 0; i < locations.length; i++) {

@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>QuickResponser</title>
 </head>
 
@@ -115,7 +116,7 @@
         
         <p>
           <label>
-            <input type="checkbox" />
+            <input type="checkbox" id="share"/>
             <span>share this report with my community</span>
             
             
@@ -123,12 +124,13 @@
         </p>
 
         <div class='two-button'>
-          <button type="button" class="btn btn-outline-primary btn-sm ">Publish</button>
           <button type="button" class="btn btn-outline-primary btn-sm cancel">Cancel</button>
+          <button type="button" class="btn btn-outline-primary btn-sm publish">Publish</button>
         </div>
       </div>
 
       <div class="footer">
+        <button class='btn btn-primary' onclick="window.location.href='/';"><i class="large material-icons">home</i></button>
         <button class='btn btn-primary' onclick="window.location.href='post_report';"><i class="large material-icons">report</i></button>
         <button class='btn btn-primary' onclick="window.location.href='access_crime_history';"><i class="large material-icons">history</i></button>
         <button class='btn btn-primary' onclick="window.location.href='statistics';"><i class="large material-icons">insert_chart</i></button>
@@ -139,38 +141,8 @@
 </html>
 
 
-<script>
-  const options ={
-    edge:'left'
-  }
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, options);
-  });
-
-  var myCookie = document.cookie.replace(/(?:(?:^|.*;\s*)crime_username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-  if (myCookie == ""){
-    document.cookie ='crime_username=Joe'
-  }
-  myCookie = document.cookie.replace(/(?:(?:^|.*;\s*)crime_username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-  
-
-  $('.white-text').text(myCookie)
-
-
-
-
-
-
-  /// front logic for the report 
-
-    $('.cancel').click(function(){
-      window.location.href ='/'
-    })
-    $('#place').click(function(){
-      $('#address').css('visibility', 'visible')
-    })
-</script>
+<script src="../js/common.js"></script>
+<script src="../js/report.js"></script>
 
 <style>
     p,body,h1,h2,h3,span,textarea,div{
@@ -320,14 +292,12 @@
     }
 
 
-
-    
-
     .footer{
         height: 10%;
         display:flex;
         justify-content: space-around;
         align-items: center;
+        background-color: rgb(244, 156, 171);
     }
 
     /* Style buttons */

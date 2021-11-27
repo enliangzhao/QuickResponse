@@ -13,21 +13,22 @@
 </head>
 
 <body>
-      <nav >
-          <div class="left">
-            <i class="large material-icons lefticon">person</i>
-            <!-- <a href=""> Settings</a> -->
-          </div>
-       
-        <span class='title_'> QucikResponser</span>
-        <i class="large material-icons right">notifications</i>
-      </nav>
-      <ol class="breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li><a href="/crimehistory">Crime History</a></li>
-        <li><a href="#"></a></li>
-        <!-- <li class="active">Data</li> -->
-      </ol>
+    <nav>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <p > QucikResponser </p>> 
+     </nav>
+   
+     <ul id="slide-out" class="sidenav">
+       <li><div class="user-view">
+         <div class="background">
+           <img src="../images/touxiang.jpg">
+         </div>
+         <a href="#user"><img class="circle" src="../images/touxiang.jpg"></a>
+         <a href="#name"><span class="white-text name">John Doe</span></a>
+       </div></li>
+       <li><a href="/user_profile">Profile</a></li>
+       <li><a href="#!">Notifications</a></li>
+     </ul>
       
       <div class="crime_history">
         <b><p><font size="5">&nbsp;&nbsp;Crime History</font><p></b>
@@ -81,15 +82,7 @@
         height: 10% !important;
        
     }
-    .left{
-        float: left;
-        width:10%;
-        height:100%;
 
-    }
-    .lefticon{
-        height: 75% !important;
-    }
     .right{
         float: right;
     }
@@ -110,13 +103,14 @@
     .crime_history{
         margin: auto !important;
         height: 55%;
-        width: 90%;
+        width: 70%;
         background-color:white;
     }
 
     .container {
-        position: relative;
-        top: 20px;
+        height: 25%;
+        width: 80%;
+        overflow: scroll;
     }
 
     .footer{
@@ -202,7 +196,7 @@
                     ele = res[i];
                     var date = new Date(ele.time);
                     console.log(date.toUTCString());
-                    $('#table-body').append(`<tr><td>${res[i].sender}</td><td>${crime[res[i].crime_type]}</td><td>${((ele.longtitude - 37.4) * (ele.longtitude - 37.4) + (ele.latitude + 122) * (ele.latitude + 122))*1000}</td><td>${date.toUTCString()}</td><td><button type="button" class="btn btn-default" id="detail-button${i}">Details</button></td></tr>`);
+                    $('#table-body').append(`<tr><td>${res[i].sender}</td><td>${crime[res[i].crime_type]}</td><td>${(((ele.longtitude - 37.4) * (ele.longtitude - 37.4) + (ele.latitude + 122) * (ele.latitude + 122))*1000).toFixed(2)}</td><td>${date.toUTCString()}</td><td><button type="button" class="btn btn-default" id="detail-button${i}">Details</button></td></tr>`);
                 }
             }
 
@@ -263,3 +257,5 @@
         })
     
 </script>
+
+<script src="../js/common.js"></script>

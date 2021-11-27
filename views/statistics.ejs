@@ -220,11 +220,13 @@ var cases = [];
         $('#apply-button').on('click', function () {
             document.getElementById("table").style.visibility = "";
             document.getElementById("chart").style.visibility = "hidden";
-            document.getElementById("buttongroup").style.visibility = "";
 
             $('#table-body').empty();
             $('#table').empty();
-            if(checkInput() == 1) viewTable();
+            if(checkInput() == 1) {
+                document.getElementById("buttongroup").style.visibility = "";
+                viewTable();
+            }
         });
 
         $('#location').on('click', function () {

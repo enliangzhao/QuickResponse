@@ -41,11 +41,11 @@
         </input>  
         <b><p><font size="2">&nbsp;&nbsp;Start Date</font><p></b>
         <input type="date" id="start" name="trip-start"
-            value="2018-07-22"
+            value="2021-07-22"
             min="1900-01-01" max="2025-12-31">
         <b><p><font size="2">&nbsp;&nbsp;End Date</font><p></b>
         <input type="date" id="end" name="trip-start"
-            value="2018-07-22"
+            value="2021-11-22"
             min="1900-01-01" max="2025-12-31">
         <button type="button" class="btn btn-default" id="reset-button">Reset Filters</button>
         <button type="button" class="btn btn-default" id="search-button">Search</button>
@@ -159,16 +159,13 @@
 
 
 <script>
-    
-        console.log('dpc1');
-        
+            
     
         $(function () {
-            console.log('dpc2');
             $('#search-button').click(function () {
                 // document.getElementById("table").style.visibility = "";
                 console.log('search');
-                console.log(verifyInput());
+                // console.log(verifyInput());
                 if(verifyInput() == 1) viewTable();
             });
 
@@ -187,7 +184,79 @@
                     alert('Please add the distance you want to select');
                     return -1;
                 }
+                console.log(isNaN($('#crime_history_distance').val()))
+                if (isNaN($('#crime_history_distance').val())) {
+                    alert('Please make sure distance is a number');
+                    return -1;
+                }
                 return 1;
+            }
+
+            function createTable(res) {
+                $('#table').append('<tbody id="table-body"></tbody>');
+                $('#table').append('<thead><tr><th>Sender</th><th>Type</th><th>Distance</th><th>Time</th><th>Details</th></tr></thead>')
+                const crime = ["Bomb", "Gun shot", "Robbery", "Drugs", "Thef"];
+                for (var i = 0; i < res.length; i++) {
+                    ele = res[i];
+                    var date = new Date(ele.time);
+                    console.log(date.toUTCString());
+                    $('#table-body').append(`<tr><td>${res[i].sender}</td><td>${crime[res[i].crime_type]}</td><td>${((ele.longtitude - 37.4) * (ele.longtitude - 37.4) + (ele.latitude + 122) * (ele.latitude + 122))*1000}</td><td>${date.toUTCString()}</td><td><button type="button" class="btn btn-default" id="detail-button${i}">Details</button></td></tr>`);
+                }
+            }
+
+            function viewTable() {
+                // $(".alert").alert('close');
+                const data = {
+                    location: $('#crime_history_address').val(),
+                    distance: $('#crime_history_distance').val(),
+                    start: $('#start').val(),
+                    end: $('#end').val(),
+                }
+
+                // document.getElementById("table").style.visibility = "";
+                console.log(data);
+                $.ajax({
+                    method: 'POST',
+                    url: `/access_crime_history/search_result`,
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    statusCode: {
+                        403: (res) => {
+                            console.log(res);
+                        },
+                        /* Handle the successful registration response */
+                        200: (res) => {
+                            console.log(res);
+                            $('#table-body').empty();
+                            $('#table').empty();
+
+                            if (res.length == 0) {
+                                alert( 'There is no data given the filters');
+                                return;
+                            }
+                            tableData=res;
+                            createTable(tableData);                        
+                            $.ajax({
+                                method: 'POST',
+                                url: `/statistics/months`,
+                                contentType: 'application/json',
+                                data: JSON.stringify(data),
+                                statusCode: {
+                                    403: (res) => {
+                                        console.log(res);
+                                    },
+                                    /* Handle the successful registration response */
+                                    200: (res) => {
+                                        //console.log(res);
+
+                                        parseData(res);
+                                    },
+                                },
+                            });
+                        },
+                    },
+                });
+
             }
         })
     

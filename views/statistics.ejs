@@ -123,9 +123,8 @@
 <div class="main">
     
     <div id="head">
-    </div>
-    <div id="liveAlertPlaceholder"></div>
 
+    </div>
     <div class="d-flex justify-content-center mt-4">
         <h4>Crime Statistics</h4>
     </div>
@@ -159,7 +158,7 @@
 
         <div class="form-group">
             <button type="button" class="btn btn-default" aria-label="Left Align" id="locationbutton">
-                <i class="fas fa-search-location"></i>
+                <i class="fas fa-map-marker-alt"></i>
             </button>
             <label for="location" style="visibility:hidden" id="locationlabel">Mountain View, CA</label>
         </div>
@@ -195,6 +194,7 @@
     <div class="footer">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+        <button class='btn btn-primary' onclick="window.location.href='/';"><i class="large material-icons">home</i></button>
         <button class='btn btn-primary' onclick="window.location.href='post_report';"><i class="large material-icons">report</i></button>
         <button class='btn btn-primary' onclick="window.location.href='access_crime_history';"><i class="large material-icons">history</i></button>
         <button class='btn btn-primary' onclick="window.location.href='statistics';"><i class="large material-icons">insert_chart</i></button>
@@ -211,7 +211,6 @@ var cases = [];
 
     // setNavbarBack("station");
     var chooseLocation = -1;
-    var alertPlaceholder = document.getElementById('liveAlertPlaceholder');
     var tableData=[];
 
     $(function () {
@@ -220,7 +219,7 @@ var cases = [];
         $('#apply-button').on('click', function () {
             document.getElementById("table").style.visibility = "";
             document.getElementById("chart").style.visibility = "hidden";
-
+            
             $('#table-body').empty();
             $('#table').empty();
             if(checkInput() == 1) {
@@ -270,6 +269,10 @@ var cases = [];
             }
             if (data.location == "" && data.label == "hidden") {
                 alert('Please choose the location');
+                return -1;
+            }
+            if (data.month.localeCompare("2021-01") < 0 || data.month.localeCompare("2021-11") > 0) {
+                alert('Please choose the month between 2021/01 to 2021/11');
                 return -1;
             }
             return 1;
@@ -403,39 +406,6 @@ var cases = [];
             });
 
         }
-
-        // function setMinDate() {
-        //     var date_now = new Date();
-        //     var year = date_now.getFullYear();
-
-        //     var month = date_now.getMonth() + 1 < 10 ? "0" + (date_now.getMonth() + 1) : (date_now.getMonth() + 1);
-        //     var date = date_now.getDate() < 10 ? "0" + date_now.getDate() : date_now.getDate();
-        //     console.log(year + "-" + month + "-" + date);
-        //     $("#date").attr("min", year + "-" + month + "-" + date);
-
-        // }
-
-        // function checkPrivilege() {
-        //     const currentUsername = getUserFromToken($.cookie('token')).username;
-        //     $.ajax({
-        //         type: 'GET',
-        //         url: `/api/users/${currentUsername}`,
-        //         headers: {
-        //             Authorization: 'Bearer ' + $.cookie('token'),
-        //         },
-        //         statusCode: {
-        //             200: (response) => {
-        //                 const privilegeLevel = response.privilegeLevel;
-        //                 if (privilegeLevel === 1 || privilegeLevel === 2) {
-        //                     setNavbarCreate();
-        //                 }
-        //             },
-        //         },
-        //     });
-        // }
-
-
-
     })
 
 </script>

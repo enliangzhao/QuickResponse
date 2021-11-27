@@ -10,7 +10,7 @@
     <title>QuickResponser</title>
     
     <script src="../js/map.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLgsrMtm_imSDVWeMXrkZFoGELYq3uHc0&libraries=&v=weekly"
       async defer
@@ -20,15 +20,24 @@
 
 </head>
 <body>
-      <nav >
-          <div class="left">
-            <i class="large material-icons lefticon" onclick="window.location.href='user_profile';">person</i>
-            <!-- <a href=""> Settings</a> -->
+    <nav>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <p > QucikResponser </p>> 
+     </nav>
+
+     <ul id="slide-out" class="sidenav">
+        <li><div class="user-view">
+          <div class="background">
+            <img src="../images/touxiang.jpg">
           </div>
-       
-        <span class='title_'> QucikResponser</span>
-        <i class="large material-icons right">notifications</i>
-      </nav>
+          <a href="#user"><img class="circle" src="../images/touxiang.jpg"></a>
+          <a href="#name"><span class="white-text name">John Doe</span></a>
+        </div></li>
+        <li><a href="/user_profile">Profile</a></li>
+        <li><a href="#!">Notifications</a></li>
+      </ul>
+
+
       <div id="map">
 
       </div>
@@ -39,7 +48,7 @@
         <button class='btn btn-primary' onclick="window.location.href='statistics';"><i class="large material-icons">insert_chart</i></button>
       </div>
 
-
+      <script src="../js/common.js"></script>
 </body>
 </html>
 
@@ -91,6 +100,7 @@
         display:flex;
         justify-content: space-around;
         align-items: center;
+        background-color: rgb(244, 156, 171);
     }
 
     /* Style buttons */

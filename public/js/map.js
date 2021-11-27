@@ -2,9 +2,11 @@ const l1 = {position: {lat:37.40884747971561, lng: -122.06000685125716},
      label: "Crime 1",
      title: "Murder here! 2021,1,1"};
 const l2 = {position: {lat:37.409993741493295, lng: -122.06358518842138},
-     label: "describe Crime 2"};
+     label: "Crime 2",
+     title: "Murder here! 2021,1,1"};
 const l3 = {position: {lat:37.40998147620404, lng: -122.06286383452085},
-     label: "describe Crime 3"};
+     label: "Crime 3",
+     title: "Murder here! 2021,1,1"};
 const locations = [l1,l2,l3];
 
 

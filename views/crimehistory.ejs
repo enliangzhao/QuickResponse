@@ -52,6 +52,16 @@
         <button type="button" class="btn btn-default" id="search-button">Search</button>
       </div>
       
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <span class="close" >&times;</span>
+        <b><p><font size="4" style="color:red">&nbsp;&nbsp;Event Details</font><p></b>
+        </div>
+  
+      </div>
+
       <div class="container" >
         <table class="table table-striped" style="font-size:12px" id="table" style="visibility:hidden">
         </table>
@@ -113,6 +123,15 @@
         overflow: scroll;
     }
 
+    .span_modal {
+        line-height: 2;
+    }
+
+    img {
+    max-width: 100%;
+    height: auto;
+    }
+
     .footer{
         height: 10%;
         display:flex;
@@ -148,6 +167,45 @@
     label {
         margin: .4rem 0;
     }
+
+    /* The Modal (background) */
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+    .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 
     
     
@@ -192,7 +250,7 @@
             function createTable(res) {
                 $('#table').append('<tbody id="table-body"></tbody>');
                 $('#table').append('<thead><tr><th>Sender</th><th>Type</th><th>Distance</th><th>Time</th><th>Details</th></tr></thead>')
-                const crime = ["Bomb", "Gun shot", "Robbery", "Drugs", "Thef"];
+                const crime = ["Bomb", "Gun shot", "Robbery", "Drugs", "Theft"];
                 for (var i = 0; i < res.length; i++) {
                     ele = res[i];
                     var date = new Date(ele.time);
@@ -234,6 +292,7 @@
                             tableData=res;
                             createTable(tableData);  
                             for (var i = 0; i< res.length; i++) {
+                                const crime = ["Bomb", "Gun shot", "Robbery", "Drugs", "Theft"];
                                 $('#detail-button' + i.toString()).on('click', function () {
                                     // document.getElementById("table").style.visibility = "";
                                     const fix = i;
@@ -248,6 +307,58 @@
                                     }
                                     console.log(parseInt(digit));
                                     var index = parseInt(digit);
+                                    var span = document.getElementsByClassName("close")[0];
+                                    var modal = document.getElementById("myModal");
+
+                                    // Get the modal
+                                    // When the user clicks anywhere outside of the modal, close it
+                                    window.onclick = function(event) {
+                                        if (event.target == modal) {
+                                            document.getElementById("myModal").style.display = "none";
+                                            $("#crime_type").remove();
+                                            $("#description").remove();
+                                            $("#latitude").remove();
+                                            $("#longtitude").remove();
+                                            $("#sender").remove();
+                                            $("#report_time").remove();
+                                            $("#photo").remove();
+                                        }
+                                    }
+                                    // When the user clicks on <span> (x), close the modal
+                                    span.onclick = function() {
+                                        modal.style.display = "none";
+                                        $("#crime_type").remove();
+                                        $("#description").remove();
+                                        $("#latitude").remove();
+                                        $("#longtitude").remove();
+                                        $("#sender").remove();
+                                        $("#report_time").remove();
+                                        $("#photo").remove();
+                                    }
+                                    const ele = res[index];
+                                    var path = "../images/bomb.jpeg";
+                                    if (ele.crime_type===1) {
+                                        path = "../images/gunshot.jpeg";
+                                    }
+                                    if (ele.crime_type===2) {
+                                        path = "../images/robbery.jpeg";
+                                    }
+                                    if (ele.crime_type===3) {
+                                        path = "../images/drugs.jpeg";
+                                    }
+                                    if (ele.crime_type===4) {
+                                        path = "../images/theft.jpeg";
+                                    }
+                                    $(".modal-content").append(`<span id="crime_type" class="span_modal"><b><br>Crime Type: ${crime[ele.crime_type]}</b></span>`);
+                                    $(".modal-content").append(`<span id="description" class="span_modal"><b><br>Description: ${ele.description}</b></span>`);
+                                    $(".modal-content").append(`<span id="latitude" class="span_modal"><b><br>Report Latitude: ${ele.latitude}</b></span>`);
+                                    $(".modal-content").append(`<span id="longtitude" class="span_modal"><b><br>Report Longtitude: ${ele.longtitude}</b></span>`);
+                                    $(".modal-content").append(`<div id="photo" class="background"><b>Photo: <b><img src=${path}></div>`);   
+                                    $(".modal-content").append(`<span id="sender" class="span_modal"><b><br>Send By: ${ele.sender}</b></span>`);
+                                    $(".modal-content").append(`<span id="report_time" class="span_modal"><b><br>Report Time: ${Date(ele.time).toString()}</b></span>`);
+          
+                                    modal.style.display = "block";
+                                    
                                 });
                             }       
                         },

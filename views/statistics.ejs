@@ -9,9 +9,13 @@
         width: 100px;
     }
 
-    .container {
+    /* .container {
         position: relative;
         top: 20px;
+    } */
+    .container {
+        height: 33%;
+        width: 100%;
     }
     
     html{
@@ -58,13 +62,6 @@
         margin: 0 !important;
         height: 75%;
         width: 100%;
-    }
-
-    .footer{
-        height: 10%;
-        display:flex;
-        justify-content: space-around;
-        align-items: center;
     }
 
     /* Style buttons */
@@ -187,12 +184,15 @@
 
     <div class="container" >
         <table class="table table-striped" style="font-size:12px" id="table" style="visibility:hidden">
+
         </table>
+
+        <div style="visibility:hidden" align="center" id="chart">
+            <p >Monthly Crime Chart</p>
+            <canvas id="myChart" style="max-width: 500px;" height="150"></canvas>
+        </div>
     </div>
-    <div style="visibility:hidden" align="center" id="chart">
-        <p >Monthly Crime Chart</p>
-        <canvas id="myChart" style="max-width: 500px;" ></canvas>
-    </div>
+
 
     <div class="footer">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -286,6 +286,7 @@ var cases = [];
             for (var i = 0; i < res.length; i++) {
                     $('#table-body').append(`<tr><td>${res[i].location}</td><td>${res[i].type}</td><td>${res[i].case}</td><td>${res[i].month}</td></tr>`);
             }
+
         }
         function viewTable() {
             // $(".alert").alert('close');
@@ -381,7 +382,7 @@ var cases = [];
                 label: lines[1],
                 data: cases[1],
                 backgroundColor: [
-                'rgba(0, 137, 132, .2)',
+                'rgba(0, 10, 130, .2)',
                 ],
                 borderColor: [
                 'rgba(0, 10, 130, .7)',
@@ -393,10 +394,10 @@ var cases = [];
                 label: lines[2],
                 data: cases[2],
                 backgroundColor: [
-                'rgba(0,255,0,0.3)',
+                'rgba(0,250,0,0.3)',
                 ],
                 borderColor: [
-                'rgba(0,255,0,0.3)',
+                'rgba(0,250,0,0.7)',
                 ],
                 borderWidth: 2,
                 lineTension: 0
@@ -404,7 +405,8 @@ var cases = [];
                 ]
                 },
                 options: {
-                responsive: true
+                responsive: true,
+
                 }
             });
 
@@ -549,6 +551,18 @@ var cases = [];
         align-items: center;
         background-color: rgb(244, 156, 171);
     }
+    /* .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 10%;            /* Footer height */
+        background-color: rgb(244, 156, 171);
+        align-items: center;
+        justify-content: space-around;
+        display:flex;
+
+
+        } */
 
     /* Style buttons */
     .btn {

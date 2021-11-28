@@ -165,6 +165,7 @@
                 if(verifyInput() == 1) viewTable();
             });
 
+
             $('#reset-button').on('click', function () {
                 // document.getElementById("table").style.visibility = "";
                 console.log('reset');
@@ -231,24 +232,24 @@
                                 return;
                             }
                             tableData=res;
-                            createTable(tableData);                        
-                            $.ajax({
-                                method: 'POST',
-                                url: `/statistics/months`,
-                                contentType: 'application/json',
-                                data: JSON.stringify(data),
-                                statusCode: {
-                                    403: (res) => {
-                                        console.log(res);
-                                    },
-                                    /* Handle the successful registration response */
-                                    200: (res) => {
-                                        //console.log(res);
-
-                                        parseData(res);
-                                    },
-                                },
-                            });
+                            createTable(tableData);  
+                            for (var i = 0; i< res.length; i++) {
+                                $('#detail-button' + i.toString()).on('click', function () {
+                                    // document.getElementById("table").style.visibility = "";
+                                    const fix = i;
+                                    console.log('details');
+                                    console.log(this.id);
+                                    var digit = "";
+                                    for (var tmp = this.id.length-1; tmp >= 0; tmp --){
+                                        if (isNaN(this.id[tmp])) {
+                                            break;
+                                        }
+                                        digit = this.id[tmp] + digit;
+                                    }
+                                    console.log(parseInt(digit));
+                                    var index = parseInt(digit);
+                                });
+                            }       
                         },
                     },
                 });

@@ -33,8 +33,8 @@ router.get('/user_profile', function(req, res, next) {
 
 router.get('/event_detail', function(req, res, next) {
   console.log("redirect to event detail");
-  console.log(req.params);
-  res.render('eventDetail');
+  console.log(req.query);
+  res.send('eventDetail');
 });
 
 module.exports = router;

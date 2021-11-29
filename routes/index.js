@@ -24,6 +24,11 @@ router.get('/access_crime_history', function(req, res, next) {
   res.render('crimehistory');
 });
 
+router.get('/style-guide', function(req, res, next) {
+  console.log("redirect to crime history");
+  res.render('style-guide');
+});
+
 router.post('/createReport',reportController.postReport)
 
 router.get('/user_profile', function(req, res, next) {

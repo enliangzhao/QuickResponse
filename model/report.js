@@ -30,6 +30,9 @@ const ReportSchema = new Schema({
     },
     crime_type:{
         type: Number, default: 0
+    },
+    followup:{
+        type:String,
     }
 
    

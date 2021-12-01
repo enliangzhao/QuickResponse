@@ -324,7 +324,9 @@
                                             $("#longtitude").remove();
                                             $("#sender").remove();
                                             $("#report_time").remove();
-                                            $("#photo").remove();
+                                            $("#photo").remove();                                        $("#followup").remove();
+                                            $("#followup").remove();
+
                                         }
                                     }
                                     // When the user clicks on <span> (x), close the modal
@@ -337,6 +339,8 @@
                                         $("#sender").remove();
                                         $("#report_time").remove();
                                         $("#photo").remove();
+                                        $("#followup").remove();
+
                                     }
                                     const ele = res[index];
                                     var path = "../images/bomb.jpeg";
@@ -359,7 +363,8 @@
                                     $(".modal-content").append(`<div id="photo" class="background"><b>Photo: <b><img src=${path}></div>`);   
                                     $(".modal-content").append(`<span id="sender" class="span_modal"><b><br>Send By: ${ele.sender}</b></span>`);
                                     $(".modal-content").append(`<span id="report_time" class="span_modal"><b><br>Report Time: ${Date(ele.time).toString()}</b></span>`);
-          
+                                    $(".modal-content").append(`<span id="followup" class="span_modal"><b><br>Follow up for the report: </b></span>`);
+
                                     modal.style.display = "block";
                                     
                                 });

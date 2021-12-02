@@ -155,33 +155,56 @@
       <div class="col-md">
         <table class="table table-striped">
          
-         
         </table>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md">
-        <table class="table table-bordered">
-          
-          
-           
-           
-        </table>
-      </div>
-      <div class="col-md">
-       <table class="table table-sm">
+    
+
+  <div class="row">
+    <div class="col-md">
+      <table class="table">
+        <thead><tr><th>Sender</th><th>Type</th><th>Distance</th><th>Time</th><th>Details</th></tr></thead>
+        <thead>
+            <tr><td>Tom</td><td>bomb</td><td>1.01</td><td>2021-9-1</td><td><button type="button" class="btn btn-default" id="detail-button${i}">Details</button></td></tr>
+            <tr><td>Tom</td><td>Thief</td><td>1.01</td><td>2021-9-1</td><td><button type="button" class="btn btn-default" id="detail-button${i}">Details</button></td></tr>
+
+    
+      </table>
+    </div>
+    <div class="col-md">
+      <table class="table table-striped">
        
-        
       </table>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-md">
+      <table class="table table-bordered">
+        
+        
+         
+         
+      </table>
+    </div>
+    <div class="col-md">
+     <table class="table table-sm">
+     
+      
+    </table>
+  </div>
+</div>
 
   <h2 class="pt-3 pb-1">Chart</h2>
   <canvas id="lineChart"></canvas>
 
   <h2 class="pt-3 pb-1">Image</h2>
   <img src="../images/touxiang.jpg"  width="200" height="200"/>
+  <img src="../images/bomb.jpeg"  width="200" height="200"/>
+  <img src="../images/drugs.jpeg"  width="200" height="200"/>
+  <img src="../images/gunshot.jpeg"  width="200" height="200"/>
+
   <h2 class="pt-3 pb-1">Icon</h2>
   
   <img src="../images/bomb.svg" width="20" height="20"/>
@@ -244,6 +267,30 @@
     <button class='btn btn-primary' onclick="window.location.href='statistics';"><i class="large material-icons">insert_chart</i></button>
   </div>
 
+  <h2 class="pt-3 pb-1">Modal</h2> 
+  <button type="button" class="btn btn-default" id="detail-button">Details</button>
+  <div id="myModal" class="modal">
+    
+
+    <!-- Modal content -->
+    <div class="modal-content">
+    <span class="close" >&times;</span>
+    <b><p><font size="4" style="color:red">&nbsp;&nbsp;Event Details</font><p></b>
+    </div>
+
+  </div>
+
+  <div class="container" >
+    <table class="table table-striped" style="font-size:12px" id="table" style="visibility:hidden">
+    </table>
+  </div>
+
+  <h2 class="pt-3 pb-1">Date Picker</h2> 
+  <input type="date" id="end" name="trip-start"
+            value="2021-11-22"
+            min="1900-01-01" max="2025-12-31">
+
+
 
 <h2 class="pt-3 pb-1">Design Pattern</h2>
 <h3 class="pt-3 pb-1">1. Navigation Tabs Reference: http://ui-patterns.com/patterns/NavigationTabs
@@ -302,5 +349,64 @@ options: {
 responsive: true
 }
 });
+
+$('#detail-button').on('click', function () {
+                                    // document.getElementById("table").style.visibility = "";
+                                    
+                                    var span = document.getElementsByClassName("close")[0];
+                                    var modal = document.getElementById("myModal");
+                                    console.log("modal");
+                                    // Get the modal
+                                    // When the user clicks anywhere outside of the modal, close it
+                                    window.onclick = function(event) {
+                                        if (event.target == modal) {
+                                            document.getElementById("myModal").style.display = "none";
+                                            $("#crime_type").remove();
+                                            $("#description").remove();
+                                            $("#latitude").remove();
+                                            $("#longtitude").remove();
+                                            $("#sender").remove();
+                                            $("#report_time").remove();
+                                            $("#photo").remove();                                        $("#followup").remove();
+                                            $("#followup").remove();
+
+                                        }
+                                    }
+                                    // When the user clicks on <span> (x), close the modal
+                                    span.onclick = function() {
+                                        modal.style.display = "none";
+                                        $("#crime_type").remove();
+                                        $("#description").remove();
+                                        $("#latitude").remove();
+                                        $("#longtitude").remove();
+                                        $("#sender").remove();
+                                        $("#report_time").remove();
+                                        $("#photo").remove();
+                                        $("#followup").remove();
+
+                                    }
+                                    
+                                    $(".modal-content").append(`<span id="crime_type" class="span_modal"><b><br>Crime Type: bomb</b></span>`);
+                                    $(".modal-content").append(`<span id="description" class="span_modal"><b><br>Description: Nothing</b></span>`);
+                                    $(".modal-content").append(`<span id="latitude" class="span_modal"><b><br>Report Latitude: -1 </b></span>`);
+                                    $(".modal-content").append(`<span id="longtitude" class="span_modal"><b><br>Report Longtitude: -1 </b></span>`);
+                                    $(".modal-content").append(`<div id="photo" class="background"><b>Photo: <b><img src="../images/bomb.jpeg"></div>`);   
+                                    $(".modal-content").append(`<span id="sender" class="span_modal"><b><br>Send By: ABC</b></span>`);
+                                    $(".modal-content").append(`<span id="report_time" class="span_modal"><b><br>Report Time: 2020-2-2</b></span>`);
+                                    $(".modal-content").append(`<span id="followup" class="span_modal"><b><br>Follow up for the report: </b></span>`);
+
+                                    modal.style.display = "block";
+                                    
+                                })
 </script>
 </html>
+
+<style>
+.btn {
+    background-color: DodgerBlue; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+    }
+</style>>

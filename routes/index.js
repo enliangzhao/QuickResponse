@@ -6,6 +6,9 @@ const reportController = require('../controller/reportController');
 router.get('/', function(req, res, next) {
   res.render('home', { title: 'Quick Responser' });
 });
+router.get('/style', function(req, res, next) {
+  res.render('style-guide', { title: 'Quick Responser' });
+});
 
 router.get('/home', function(req, res, next) {
   res.render('home', { title: 'Quick Responser' });
